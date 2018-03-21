@@ -13,6 +13,12 @@
 {% block content %}
     <h1 property="title">{{ content.title }}</h1>
 
+    <ul>
+        {% for article in content.articles %}
+            <li>{{ article.title }} <a href="{{ sulu_content_path(article.routePath) }}">GOTO</a></li>
+        {% endfor %}
+    </ul>
+
     <div property="article">
         {{ content.article|raw }}
     </div>

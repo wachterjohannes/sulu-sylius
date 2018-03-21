@@ -72,6 +72,16 @@ abstract class AbstractKernel extends SuluKernel
 
             // tools
             new Massive\Bundle\BuildBundle\MassiveBuildBundle(),
+
+            // sulu
+            new Sulu\Bundle\ArticleBundle\SuluArticleBundle(),
+            new ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
+
+            // rabbitmq
+            new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+
+            // app
+            new App\AppBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

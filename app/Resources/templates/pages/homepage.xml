@@ -5,7 +5,7 @@
 
     <key>homepage</key>
 
-    <view>templates/homepage</view>
+    <view>templates/pages/homepage</view>
     <controller>SuluWebsiteBundle:Default:index</controller>
     <cacheLifetime>2400</cacheLifetime>
 
@@ -39,6 +39,12 @@
                 </property>
             </properties>
         </section>
+
+        <property name="articles" type="smart_content">
+            <params>
+                <param name="provider" value="articles"/>
+            </params>
+        </property>
 
         <property name="article" type="text_editor">
             <meta>

@@ -3,16 +3,18 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
 
-    <key>default</key>
+    <key>article_default</key>
 
-    <view>templates/pages/default</view>
-    <controller>SuluWebsiteBundle:Default:index</controller>
-    <cacheLifetime>2400</cacheLifetime>
+    <view>templates/articles/article_default</view>
+    <controller>SuluArticleBundle:WebsiteArticle:index</controller>
+    <cacheLifetime>144000</cacheLifetime>
 
     <meta>
         <title lang="en">Default</title>
         <title lang="de">Standard</title>
     </meta>
+
+    <tag name="sulu_article.type" type="article"/>
 
     <properties>
         <section name="highlight">
@@ -22,21 +24,22 @@
                         <title lang="en">Title</title>
                         <title lang="de">Titel</title>
                     </meta>
+
                     <params>
                         <param name="headline" value="true"/>
                     </params>
 
-                    <tag name="sulu.rlp.part"/>
+                    <tag name="sulu_article.article_title"/>
                 </property>
 
-                <property name="url" type="resource_locator" mandatory="true">
+                <property name="routePath" type="route">
                     <meta>
                         <title lang="en">Resourcelocator</title>
                         <title lang="de">Adresse</title>
                     </meta>
-
-                    <tag name="sulu.rlp"/>
                 </property>
+
+                <property name="productCode" type="text_line"/>
             </properties>
         </section>
 

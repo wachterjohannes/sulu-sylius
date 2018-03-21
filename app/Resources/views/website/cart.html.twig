@@ -1,0 +1,11 @@
+{% extends "master.html.twig" %}
+
+{% block content %}
+    {{ dump() }}
+
+    <h1>Cart</h1>
+
+    <p>Total: {{ content.totals.total/100 }}{{ content.currency }}</p>
+
+    <a href="http://127.0.0.1:8000/en_US/magic-checkout/{{ token }}/address">Go to checkout</a>
+{% endblock %}

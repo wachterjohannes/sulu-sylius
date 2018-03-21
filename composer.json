@@ -34,7 +34,9 @@
         "jackalope/jackalope-jackrabbit": "^1.2",
         "doctrine/doctrine-fixtures-bundle": "~2.3",
         "doctrine/doctrine-bundle": "^1.0",
-        "doctrine/doctrine-cache-bundle": "^1.0"
+        "doctrine/doctrine-cache-bundle": "^1.0",
+        "sulu/article-bundle": "1.0.0-RC5",
+        "php-amqplib/rabbitmq-bundle": "^1.14"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.8 || ~3.0",
