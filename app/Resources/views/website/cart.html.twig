@@ -1,11 +1,55 @@
 {% extends "master.html.twig" %}
 
-{% block content %}
-    {{ dump() }}
+{% block meta %}
+    <title>Shopping cart</title>
+{% endblock %}
 
+{% block content %}
     <h1>Cart</h1>
+
+    <table>
+        <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+        </tr>
+
+        {% for item in content.items %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total / item.quantity / 100 }}{{ content.currency }}</td>
+                <td>{{ item.total / 100 }}{{ content.currency }}</td>
+            </tr>
+        {% endfor %}
+
+        <tr>
+            <td>{{ content.items|length + 1 }}</td>
+            <td>Shipping</td>
+            <td></td>
+            <td></td>
+            <td>{{ content.totals.shipping/100 }}{{ content.currency }}</td>
+        </tr>
+        <tr>
+            <td>{{ content.items|length + 2 }}</td>
+            <td>Taxes</td>
+            <td></td>
+            <td></td>
+            <td>{{ content.totals.taxes/100 }}{{ content.currency }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td>{{ content.totals.total/100 }}{{ content.currency }}</td>
+        </tr>
+    </table>
 
     <p>Total: {{ content.totals.total/100 }}{{ content.currency }}</p>
 
-    <a href="http://127.0.0.1:8000/en_US/magic-checkout/{{ token }}/address">Go to checkout</a>
+    <a href="{{ baseUri }}/sulu-checkout/{{ token }}">Go to checkout</a>
 {% endblock %}

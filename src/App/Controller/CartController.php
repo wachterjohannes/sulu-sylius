@@ -12,18 +12,28 @@ class CartController extends Controller
     {
         $token = $this->createCart();
 
-        $content = json_decode(file_get_contents('http://127.0.0.1:8000/shop-api/carts/' . $token), true);
+        $baseUri = $this->getParameter('app.sylius_url');
+        $client = new Client(['base_uri' => $baseUri]);
+        $response = $client->get('/shop-api/carts/' . $token);
+        $content = json_decode($response->getBody(), true);
 
-        return $this->render('website/cart.html.twig', ['content' => $content, 'token' => $token]);
+        return $this->render(
+            'website/cart.html.twig',
+            [
+                'content' => $content,
+                'token' => $token,
+                'baseUri' => $baseUri,
+            ]
+        );
     }
 
     public function addToCartAction(string $code)
     {
         $token = $this->createCart();
 
-        $client = new Client();
+        $client = new Client(['base_uri' => $this->getParameter('app.sylius_url')]);
         $client->post(
-            'http://127.0.0.1:8000/shop-api/carts/' . $token . '/items',
+            '/shop-api/carts/' . $token . '/items',
             [
                 'body' => json_encode(
                     [
@@ -42,11 +52,11 @@ class CartController extends Controller
         $token = $this->get('session')->get('cart_token');
 
         if (!$token) {
-            $client = new Client();
+            $client = new Client(['base_uri' => $this->getParameter('app.sylius_url')]);
             $token = Uuid::uuid4()->toString();
             $client->post(
-                'http://127.0.0.1:8000/shop-api/carts/' . $token,
-                ['body' => json_encode(['channel' => 'default'])]
+                '/shop-api/carts/' . $token,
+                ['body' => json_encode(['channel' => $this->getParameter('app.sylius_channel')])]
             );
             $this->get('session')->set('cart_token', $token);
         }

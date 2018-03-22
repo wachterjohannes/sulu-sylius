@@ -195,6 +195,10 @@ old_sound_rabbit_mq:
                 { name: 'sulu_sylius', type: direct }
             service_alias:    sulu_sylius.producer # no alias by default
 
+app:
+    sylius_url: http://127.0.0.1:8001
+    sylius_channel: US_WEB
+
 # Just a dirty hack to get the jms serializer bundle correctly working
 # https://github.com/schmittjoh/JMSSerializerBundle/pull/270#issuecomment-21171800
 services:

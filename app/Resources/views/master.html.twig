@@ -21,6 +21,9 @@
                                    title="{{ item.title }}">{{ item.title }}</a>
                             </li>
                         {% endfor %}
+                        <li>
+                            <a href="{{ path('app_cart') }}">Go to cart</a>
+                        </li>
                     </ul>
                 </nav>
             {% endblock %}
