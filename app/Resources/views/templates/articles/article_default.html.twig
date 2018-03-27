@@ -1,9 +1,11 @@
 {% extends "master.html.twig" %}
 
 {% block content %}
-    <h1 property="title">{{ content.title }} ({{ content.productCode }})</h1>
+    <h1 property="title">{{ content.title }}</h1>
 
-    <a href="{{ path('app_add_to_cart', {code: content.productCode}) }}">Add it to cart</a>
+    <p>Price: {{ content.productPrice / 100 }}USD</p>
+
+    <a href="{{ path('app_add_to_cart', {code: content.productCode, variant: content.variantCode}) }}">Add it to cart</a>
 
     <div property="article">
         {{ content.article|default()|raw }}

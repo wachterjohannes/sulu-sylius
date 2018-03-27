@@ -153,11 +153,15 @@ ongr_elasticsearch:
     managers:
         default:
             index:
+                hosts:
+                    - "%elasticsearch_host%"
                 index_name: su_articles
             mappings:
                 - SuluArticleBundle
         live:
             index:
+                hosts:
+                    - "%elasticsearch_host%"
                 index_name: su_articles_live
             mappings:
                 - SuluArticleBundle
@@ -177,8 +181,8 @@ sulu_route:
 old_sound_rabbit_mq:
     connections:
         default:
-            host: 'localhost'
-            port: 5672
+            host: "localhost"
+            port: "%rabbitmq_port%"
             user: guest
             password: guest
     consumers:

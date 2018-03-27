@@ -39,7 +39,11 @@
                     </meta>
                 </property>
 
+                <property name="productName" type="text_line"/>
+                <property name="variantName" type="text_line"/>
                 <property name="productCode" type="text_line"/>
+                <property name="variantCode" type="text_line"/>
+                <property name="productPrice" type="text_line"/>
             </properties>
         </section>
 

@@ -12,6 +12,10 @@ app_cart:
     path:     /cart
     defaults: { _controller: AppBundle:Cart:index }
 
+app_cart_completed:
+    path:     /completed
+    defaults: { _controller: AppBundle:Cart:completed }
+
 app_add_to_cart:
     path: /cart/{code}
     defaults: { _controller: AppBundle:Cart:addToCart }

@@ -26,9 +26,18 @@ class SyliusConsumer implements ConsumerInterface
         /** @var ArticleDocument $article */
         $article = $this->documentManager->create('article');
 
-        $article->setTitle($data['name']);
+        $article->setTitle(sprintf('%s - %s' , $data['name'], $data['variantName']));
         $article->setStructureType('article_default');
-        $article->getStructure()->bind(['title' => $data['name'], 'productCode' => $data['code']]);
+        $article->getStructure()->bind(
+            [
+                'title' => $article->getTitle(),
+                'productCode' => $data['code'],
+                'productName' => $data['name'],
+                'productPrice' => $data['price'],
+                'variantCode' => $data['variantCode'],
+                'variantName' => $data['variantName'],
+            ]
+        );
 
         $this->documentManager->persist($article, 'en');
         $this->documentManager->flush();

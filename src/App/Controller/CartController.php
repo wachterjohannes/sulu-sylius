@@ -5,6 +5,7 @@ namespace App\Controller;
 use GuzzleHttp\Client;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class CartController extends Controller
 {
@@ -27,7 +28,14 @@ class CartController extends Controller
         );
     }
 
-    public function addToCartAction(string $code)
+    public function completedAction()
+    {
+        $this->get('session')->remove('cart_token');
+
+        return $this->render('website/complete.html.twig');
+    }
+
+    public function addToCartAction(string $code, Request $request)
     {
         $token = $this->createCart();
 
@@ -38,7 +46,8 @@ class CartController extends Controller
                 'body' => json_encode(
                     [
                         'productCode' => $code,
-                        'quantity' => 3,
+                        'variantCode' => $request->get('variant'),
+                        'quantity' => 1,
                     ]
                 )
             ]

@@ -1,7 +1,7 @@
 parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
-    database_port:     ~
+    database_port:     13306
     database_name:     su_sylius
     database_user:     sylius
     database_password: sylius
@@ -32,3 +32,6 @@ parameters:
     phpcr_user: admin
     phpcr_pass: admin
     phpcr_cache: file_system
+
+    elasticsearch_host: localhost:19200
+    rabbitmq_port: 15672
